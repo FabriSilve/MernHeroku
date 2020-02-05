@@ -1,0 +1,37 @@
+version: '3.1'
+
+services:
+  db:
+    image: mongo:4.0.4
+    ports:
+      - "2999:2999"
+
+  api:
+    build: ./api
+    command: npm run dev
+    environment:
+      NODE_ENV: "development"
+    volumes:
+      - ./api:/code:delegated
+      - api_node_modules:/code/node_modules:delegated
+    ports:
+      - "3010:3010"
+    links:
+      - db
+
+  frontend:
+    build: ./frontend
+    command: npm start
+    environment:
+      ASSETS_URL: "http://localhost:3000/"
+      TARGET_ENV: "dev"
+    volumes:
+      - ./frontend:/code:delegated
+      - frontend_node_modules:/code/node_modules:delegated
+    ports:
+      - "3000:3000"
+
+volumes:
+  node_modules:
+  api_node_modules:
+  frontend_node_modules:

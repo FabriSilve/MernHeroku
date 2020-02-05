@@ -1,0 +1,49 @@
+{
+  "name": "api",
+  "version": "0.6.13",
+  "scripts": {
+    "dev": "nodemon ./src/app.js",
+    "lint": "eslint ./src/",
+    "test": "npm run lint && npm run jest",
+    "jest": "jest",
+    "start": "node ./src/app.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.6.4",
+    "cors": "^2.8.1",
+    "express": "^4.16.3",
+    "moment": "^2.22.0",
+    "mongoose": "^5.4.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.19.1",
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.7"
+  },
+  "jest": {
+    "roots": [
+      "<rootDir>/src/",
+      "<rootDir>/tests/"
+    ],
+    "testEnvironment": "node",
+    "watchPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ],
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/",
+      "<rootDir>/src/"
+    ],
+    "collectCoverageFrom": [
+      "src/**"
+    ],
+    "coverageDirectory": "coverage",
+    "coverageThreshold": {
+      "global": {
+        "branches": 10,
+        "functions": 10,
+        "lines": 10,
+        "statements": 10
+      }
+    }
+  }
+}
